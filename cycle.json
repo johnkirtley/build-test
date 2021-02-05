@@ -21,7 +21,14 @@
             "url": "https://github.com/aubuchcl/docker_nginx_httpd.git"
           }
         }
-      }
+      },
+      "config": {
+        "network": {
+          "public": "disable",
+          "hostname": "testing",
+          "ports": ["6379:6379"]
+        }
   }
+}
 }
 }
