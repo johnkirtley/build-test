@@ -1,33 +1,52 @@
 {
   "version": "1.0",
-  "about": {
-    "version": "1.0",
-    "description": "a base image for nginx and apache"
-  },
-  "test": [],
-  "services": {
-    "loadbalancer": null,
-    "vpn": null
-  },
   "containers": {
-    "nginx": {
-      "name": "nginx",
+    "demo": {
+      "name": "demo",
       "image": {
-        "name": "nginx:alpine",
-        "source": {
-          "repo": {
+        "name": "simplews",
+        "origin": {
+          "type": "docker-file",
+          "details": {
             "dir": "/",
-            "build_file": "/nginx/Dockerfile",
-            "url": "https://github.com/aubuchcl/docker_nginx_httpd.git"
+            "path": "/Dockerfile"
           }
         }
       },
       "config": {
         "network": {
-          "public": "disable",
-          "hostname": "testing"
+          "public": "enable",
+          "hostname": "simplews",
+          "ports": ["80:80"]
+        },
+        "deploy": {
+          "instances": 1
         }
+      }
+    },
+    "reach": {
+      "name": "reach",
+      "image": {
+        "name": "simplews-external",
+        "origin": {
+          "type": "docker-file",
+          "details": {
+            "url": "https://github.com/aubuchcl/build-dir-two.git",
+            "dir": "/",
+            "path": "/Dockerfile"
+          }
+        }
+      },
+      "config": {
+        "network": {
+          "public": "enable",
+          "hostname": "simplews",
+          "ports": ["80:80"]
+        },
+        "deploy": {
+          "instances": 1
+        }
+      }
+    }
   }
-}
-}
 }
