@@ -1,50 +1,27 @@
 {
   "version": "1.0",
+  "about": {
+    "version": "1.0",
+    "description": "a base image for nginx and apache"
+  },
+  "test": [],
+  "services": {
+    "loadbalancer": null,
+    "vpn": null
+  },
   "containers": {
-    "demo": {
-      "name": "demo",
+    "nginx": {
+      "name": "nginx",
       "image": {
-        "name": "simplews",
-        "origin": {
-          "type": "docker-file",
-          "details": {
+        "name": "nginx:alpine",
+        "source": {
+          "repo": {
             "dir": "/",
-            "path": "/Dockerfile"
+            "build_file": "/nginx/Dockerfile",
+            "url": "https://github.com/aubuchcl/docker_nginx_httpd.git"
           }
         }
-      },
-      "config": {
-        "network": {
-          "public": "enable",
-          "hostname": "simplews",
-          "ports": ["80:80"]
-        },
-        "deploy": {
-          "instances": 1
-        }
       }
-    },
-    "pub": {
-      "name": "pub",
-      "image": {
-        "name": "pub",
-        "origin": {
-          "type": "docker-hub",
-          "details": {
-            "target": "redis:latest"
-          }
-        }
-      },
-      "config": {
-        "network": {
-          "public": "enable",
-          "hostname": "pub",
-          "ports": ["80:6379"]
-        },
-        "deploy": {
-          "instances": 1
-        }
-      }
-    }
   }
+}
 }
