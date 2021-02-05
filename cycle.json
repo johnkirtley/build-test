@@ -11,14 +11,14 @@
   },
   "containers": {
     "nginx": {
-      "name": "nginx",
+      "name": "john",
       "image": {
-        "name": "nginx:alpine",
+        "name": "kirtleyj16/node-backend:latest",
         "source": {
           "repo": {
             "dir": "/",
-            "build_file": "/nginx/Dockerfile",
-            "url": "https://github.com/aubuchcl/docker_nginx_httpd.git"
+            "build_file": "/Dockerfile",
+            "url": "https://github.com/johnkirtley/build-test.git"
           }
         }
       }
